@@ -24,8 +24,7 @@ class SpannableGridEditingStrategy {
 
   /// Create a strategy instance that disable editing.
   ///
-  factory SpannableGridEditingStrategy.disabled() =>
-      const SpannableGridEditingStrategy(
+  factory SpannableGridEditingStrategy.disabled() => const SpannableGridEditingStrategy(
         allowed: false,
         enterOnLongTap: false,
         exitOnTap: false,
@@ -34,8 +33,7 @@ class SpannableGridEditingStrategy {
 
   /// Create a strategy instance that allow immediate moving cells.
   ///
-  factory SpannableGridEditingStrategy.immediate() =>
-      const SpannableGridEditingStrategy(
+  factory SpannableGridEditingStrategy.immediate() => const SpannableGridEditingStrategy(
         allowed: true,
         enterOnLongTap: false,
         exitOnTap: false,
@@ -89,6 +87,8 @@ class SpannableGridEditingStrategy {
 class SpannableGridStyle {
   const SpannableGridStyle({
     this.backgroundColor = Colors.black12,
+    this.cellBorderColor = Colors.black38,
+    this.cellBorderWidth = 2.0,
     this.contentOpacity = 0.5,
     this.selectedCellDecoration,
     this.spacing = 2.0,
@@ -118,6 +118,9 @@ class SpannableGridStyle {
   /// Space between cells.
   ///
   final double spacing;
+
+  final Color cellBorderColor;
+  final double cellBorderWidth;
 }
 
 /// How the [SpannableGrid] fits its parent.

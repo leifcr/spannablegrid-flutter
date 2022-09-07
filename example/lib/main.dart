@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
       title: 'SpannableGrid Demo',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
-        accentColor: Colors.amber,
       ),
       home: MyHomePage(title: 'SpannableGrid Demo'),
     );
@@ -28,6 +27,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   bool _singleCell = false;
+  int _tilew = 2;
+  int _tileh = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +40,69 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SpannableGrid(
+            Expanded(
+                child: SpannableGrid(
+              style: SpannableGridStyle(
+                backgroundColor: Colors.black12,
+                contentOpacity: 0.9,
+                spacing: 0,
+              ),
+              editingStrategy: SpannableGridEditingStrategy.immediate(),
+              gridSize: SpannableGridSize.parent,
               columns: 4,
               rows: 4,
               cells: _getCells(),
-              onCellChanged: (cell) { print('Cell ${cell.id} changed'); },
+              onCellChanged: (cell) {
+                print('Cell ${cell.id} changed');
+              },
+            )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                child: Text('h+'),
+                onPressed: () {
+                  setState(() {
+                    _tileh++;
+                  });
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                child: Text('h-'),
+                onPressed: () {
+                  setState(() {
+                    if (_tileh > 1) {
+                      _tileh--;
+                    }
+                  });
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                child: Text('w+'),
+                onPressed: () {
+                  setState(() {
+                    _tilew++;
+                  });
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                child: Text('w-'),
+                onPressed: () {
+                  setState(() {
+                    if (_tilew > 1) {
+                      _tilew--;
+                    }
+                  });
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -74,31 +133,26 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           color: Colors.lime,
           child: Center(
-            child: Text("Tile 4x4",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
+            child: Text(
+              "Tile 4x4",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ),
       ));
-    }
-    else {
+    } else {
       result.add(SpannableGridCellData(
         column: 1,
         row: 1,
-        columnSpan: 2,
-        rowSpan: 2,
+        columnSpan: _tilew,
+        rowSpan: _tileh,
         id: "Test Cell 1",
         child: Container(
           color: Colors.lime,
           child: Center(
-            child: Text("Tile 2x2",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
+            child: Text(
+              "Tile $_tileh x $_tilew",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ),
@@ -112,11 +166,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           color: Colors.lime,
           child: Center(
-            child: Text("Tile 1x1",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
+            child: Text(
+              "Tile 1x1",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ),
@@ -130,11 +182,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           color: Colors.lightBlueAccent,
           child: Center(
-            child: Text("Tile 3x1",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
+            child: Text(
+              "Tile 3x1",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ),
@@ -148,11 +198,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Container(
           color: Colors.lightBlueAccent,
           child: Center(
-            child: Text("Tile 1x2",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
+            child: Text(
+              "Tile 1x2",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
         ),
