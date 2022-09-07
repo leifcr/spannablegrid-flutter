@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:spannable_grid/spannable_grid.dart';
-
+import 'spannable_grid_options.dart';
 import 'spannable_grid_cell_data.dart';
 
 class SpannableGridEmptyCellView extends StatelessWidget {

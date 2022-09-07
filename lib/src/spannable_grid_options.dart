@@ -87,7 +87,7 @@ class SpannableGridEditingStrategy {
 class SpannableGridStyle {
   const SpannableGridStyle({
     this.backgroundColor = Colors.black12,
-    this.cellBorderColor = Colors.black38,
+    this.cellBorderColor = Colors.black45,
     this.cellBorderWidth = 2.0,
     this.contentOpacity = 0.5,
     this.selectedCellDecoration,

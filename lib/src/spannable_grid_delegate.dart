@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:spannable_grid/spannable_grid.dart';
-
+import 'spannable_grid_options.dart';
 import 'spannable_grid_cell_data.dart';
 
 class SpannableGridDelegate extends MultiChildLayoutDelegate {
@@ -45,10 +44,7 @@ class SpannableGridDelegate extends MultiChildLayoutDelegate {
             minHeight: childHeight,
             maxHeight: childHeight,
           ));
-      positionChild(
-          cell.id,
-          Offset((cell.column - 1) * cellWidth + spacing,
-              (cell.row - 1) * cellHeight + spacing));
+      positionChild(cell.id, Offset((cell.column - 1) * cellWidth + spacing, (cell.row - 1) * cellHeight + spacing));
     }
   }
 
